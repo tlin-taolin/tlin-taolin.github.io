@@ -60,10 +60,6 @@ kbd {
   line-height: 1.3em;
 }
 
-code {
-  font-size: 1.2em;
-}
-
 img {
   max-width: 100%;
 }
@@ -154,7 +150,7 @@ screen and (max-width: 40em) {
 }
 
 code {
-  font-size: 0.7em;
+  font-size: 0.8em;
   display: block;
   white-space: pre-wrap;
 }
