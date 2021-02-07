@@ -13,13 +13,14 @@
     <link rel="icon" type="image/png" href="avatar.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script src="script.js"></script>
+
     <!-- OpenGraph metadata -->
     <meta property="og:site_name" content="Tao Lin" />
     <meta property="og:description" content="research.">
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Tao Lin" />
     <meta property="og:url" content="/" />
-
   </head>
   <body>
     <main>
@@ -38,23 +39,34 @@
 
       <nav>
         <ul>
-          <li><a href="cv.html">cv</a></li>
-          <li><a href="research.html">research</a></li>
-          <li><a href="misc.html">misc</a></li>
-          <li><a href="https://scholar.google.com/citations?user=QE9pa_cAAAAJ&hl=en">google scholar</a></li>
+          <a href="cv.html">cv</a>
+          • <a href="research.html">research</a>
+          • <a href="misc.html">misc</a>
+          • <a href="https://scholar.google.com/citations?user=QE9pa_cAAAAJ&hl=en">google scholar</a>
+          • <a href="#" onclick="showBibTex(this); return false">contact</a><code class="bibtex">
+                                          tao.lin [at] epfl.ch, itamtao [at] gmail.com</code>
         </ul>
       </nav>
 
       <hr>
       <div>
         <p>
-            I am now a Ph.D. student at <a href="http://www.epfl.ch/">EPFL</a>, under the supervision of
-            Prof. <a href="https://mlo.epfl.ch/">Martin Jaggi</a>
-            and Prof. <a href="https://parsa.epfl.ch/~falsafi/">Babak Falsafi</a>.
+            I am a Ph.D. student at <a href="https://mlo.epfl.ch/">MLO</a>,
+            <a href="http://www.epfl.ch/">École polytechnique fédérale de Lausanne (EPFL)</a>, under the supervision of
+            Prof. <a href="https://scholar.google.com/citations?user=r1TJBr8AAAAJ&hl=en">Martin Jaggi</a>
+            and Prof. <a href="https://parsa.epfl.ch/~falsafi/">Babak Falsafi</a>.<br><br>
+
             Prior to that,
             I received the Master of Science degree from EPFL in 2017
             and Bachelor of Engineering degree from Zhejiang University (ZJU) in 2014.
         </p>
+      </div>
+
+      <hr>
+      <div>
+      I am interested in designing efficient and effective optimization algorithms for distributed deep learning systems.<br><br>
+
+      I enjoy hiking in the Swiss Alps.
       </div>
 
     <div class="ivy"></div>
