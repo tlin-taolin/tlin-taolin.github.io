@@ -25,7 +25,77 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Tao Lin" />
     <meta property="og:url" content="/" />
+
+    <style>      
+      /* Style the tab */
+      .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+      }
+      
+      /* Style the buttons inside the tab */
+      .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+      }
+      
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+        background-color: #ddd;
+      }
+      
+      /* Create an active/current tablink class */
+      .tab button.active {
+        background-color: #ccc;
+      }
+      
+      /* Style the tab content */
+      .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+      </style>
+  
   </head>
+
+  <script>
+    function includeHTML() {
+      var z, i, elmnt, file, xhttp;
+      /*loop through a collection of all HTML elements:*/
+      z = document.getElementsByTagName("*");
+      for (i = 0; i < z.length; i++) {
+        elmnt = z[i];
+        /*search for elements with a certain atrribute:*/
+        file = elmnt.getAttribute("w3-include-html");
+        if (file) {
+          /*make an HTTP request using the attribute value as the file name:*/
+          xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+              if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+              if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+              /*remove the attribute, and call this function once more:*/
+              elmnt.removeAttribute("w3-include-html");
+              includeHTML();
+            }
+          }      
+          xhttp.open("GET", file, true);
+          xhttp.send();
+          /*exit the function:*/
+          return;
+        }
+      }
+    };
+  </script>
 
   <body>
     <main>  
@@ -38,416 +108,59 @@
         </h1>
       </header>
 
-      <p>
-        <span class="note"> Ph.D. student in Deep Learning.</span><br>
-      </p>
-
+      <!-- general head -->
+      <p><span class="note"> Ph.D. student in Deep Learning.</span><br></p>
       <nav>
         <ul>
           <a href="cv.html">cv</a>
-          • <a href="research.html">research</a>
           <!-- • <a href="group.html">group</a> -->
-          • <a href="https://scholar.google.com/citations?user=QE9pa_cAAAAJ&hl=en">google scholar</a>
+          • <a href="research.html">research</a>
+          <!-- • <a href="https://scholar.google.com/citations?user=QE9pa_cAAAAJ&hl=en">google scholar</a> -->
           • <a href="#" onclick="showBibTex(this); return false">contact</a><code class="bibtex">
                                             tao.lin [at] epfl.ch, itamtao [at] gmail.com</code>
         </ul>
       </nav>
 
+      <!-- publication related -->
       <hr>
       <p>
-      * indicates equal contribution;
-      <sup>†</sup> indicates corresponding authorship.
+        Most recent publications on <a href="https://scholar.google.com/citations?user=QE9pa_cAAAAJ&hl=en">Google Scholar</a>.<br>
+        * indicates equal contribution; <sup>†</sup> indicates corresponding authorship.
       </p>
 
-      <h4><a name="conference"></a>Conference papers</h4>
-        <ol reversed>
-          <!-- <li>
-            <b>Learning Disentangled Behaviour Patterns for Wearable-based Human Activity Recognition.</b><br>                          
-            Jie Su, Zhenyu Wen, <b>Tao Lin</b>, Yu Guan.<br>
-            UbiComp 2022
-            • paper
-          </li> -->
+      <div class="tab">
+        <button class="tablinks" onclick="openPublicatiosn(event, 'selected')" id="defaultOpen">Selected</button>
+        <button class="tablinks" onclick="openPublicatiosn(event, 'all')">All</button>
+      </div>
+      <div w3-include-html="publications_selected.html" id="selected" class="tabcontent">
+        <script>includeHTML();</script>
+      </div>  
+      <div w3-include-html="publications_all.html" id="all" class="tabcontent">
+        <script>includeHTML();</script>
+      </div>     
 
-
-          <li>
-            <b>RelaySum for Decentralized Deep Learning on Heterogeneous Data.</b><br>              
-            Thijs Vogels*, Lie He*, Anastasia Koloskova, <b>Tao Lin</b>, Sai Praneeth Karimireddy, Sebastian U. Stich, Martin Jaggi.<br>
-            NeurIPS 2021
-            • <a href="https://arxiv.org/abs/2110.04175">paper</a>
-            • <a href="https://github.com/epfml/relaysgd">code</a>
-            • <a href="https://youtu.be/NyQYP35-9OY">video</a>
-            • <a href="https://thijsvogels.nl/relaysgd-slides">slides</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@inproceedings{vogels-he2021relaysgd,
-  title     = {RelaySum for Decentralized Deep Learning on Heterogeneous Data},
-  author    = {Vogels, Thijs and He, Lie and Koloskova, Anastasia and Lin, Tao and Karimireddy, Sai Praneeth and Stich, Sebastian U. and Jaggi, Martin},
-  journal   = {Advances in Neural Information Processing Systems 34},
-  year      = {2021},
-}</code>
-          </li>
-    
-          <li>
-            <b>An Improved Analysis of Gradient Tracking for Decentralized Machine Learning.</b><br>              
-            Anastasia Koloskova, <b>Tao Lin</b>, Sebastian U. Stich.<br>
-            NeurIPS 2021
-            • <a href="https://openreview.net/forum?id=CmI7NqBR4Ua">paper</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@inproceedings{koloskova2021an,
-  title     = {An Improved Analysis of Gradient Tracking for Decentralized Machine Learning},
-  author    = {Koloskova, Anastasia and Lin, Tao and Stich, Sebastian U.},
-  journal   = {Advances in Neural Information Processing Systems 34},
-  year      = {2021},
-}</code>
-          </li>
-
-          <li>
-              <b>Quasi-Global Momentum: Accelerating Decentralized Deep Learning on Heterogeneous Data.</b><br>
-              <b>Tao Lin</b>, Sai Praneeth Karimireddy, Sebastian U. Stich, Martin Jaggi.<br>
-              ICML 2021 
-              • <a href="https://arxiv.org/abs/2102.04761">paper</a>
-              • <a href="https://github.com/epfml/quasi-global-momentum">code</a> 
-              • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-              <code class="bibtex">@inproceedings{lin2021quasi,
-  title     = {Quasi-global momentum: Accelerating decentralized deep learning on heterogeneous data},
-  author    = {Lin, Tao and Karimireddy, Sai Praneeth and Stich, Sebastian U and Jaggi, Martin},
-  booktitle = {International Conference on Machine Learning},
-  year      = {2021}
-}</code>             
-          </li>
-          <li>
-              <b>Consensus Control for Decentralized Deep Learning.</b><br>
-              Lingjing Kong*, <b>Tao Lin*</b><sup>†</sup>, Anastasia Koloskova, Martin Jaggi, Sebastian U. Stich.<br>
-              ICML 2021 
-              • <a href="https://arxiv.org/abs/2102.04828">paper</a>
-              • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-              <code class="bibtex">@inproceedings{kong2021consensus,
-  title     = {Consensus Control for Decentralized Deep Learning},
-  author    = {Kong, Lingjing and Lin, Tao and Koloskova, Anastasia and Jaggi, Martin and Stich, Sebastian U},
-  booktitle = {International Conference on Machine Learning},
-  year      = {2021}
-}</code> 
-          </li>
-          <li>
-              <b>Ensemble Distillation for Robust Model Fusion in Federated Learning.</b><br>
-              <b>Tao Lin*</b>, Lingjing Kong*, Sebastian U. Stich, Martin Jaggi.<br>
-              NeurIPS 2020
-              • <a href="https://arxiv.org/abs/2006.07242">paper</a>
-              • <a href="https://github.com/epfml/federated-learning-public-code">code</a>
-              • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-              <code class="bibtex">@inproceedings{lin2020ensemble,
-  title     = {Ensemble distillation for robust model fusion in federated learning},
-  author    = {Lin, Tao and Kong, Lingjing and Stich, Sebastian U and Jaggi, Martin},
-  booktitle = {Advances in Neural Information Processing Systems},
-  year      = {2020}
-}</code>
-          </li>
-
-          <li>
-            <b>On the Loss Landscape of Adversarial Training: Identifying Challenges and How to Overcome Them.</b><br>
-            Chen Liu, Mathieu Salzmann, <b>Tao Lin</b>, Ryota Tomioka, Sabine Süsstrunk.<br>
-            NeurIPS 2020
-            • <a href="https://arxiv.org/abs/2006.08403">paper</a>
-            • <a href="https://github.com/liuchen11/AdversaryLossLandscape">code</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@inproceedings{lin2020ensemble,
-  title     = {On the Loss Landscape of Adversarial Training: Identifying Challenges and How to Overcome Them},
-  author    = {Liu, Chen and Salzmann, Mathieu and Lin, Tao and Tomioka, Ryota and S{\"u}sstrunk, Sabine},
-  booktitle = {Advances in Neural Information Processing Systems},
-  year      = {2020}
-}</code>         
-          </li>
-
-          <li>
-            <b>Masking as an Efficient Alternative to Finetuning for Pretrained Language Models.</b><br>
-            Mengjie Zhao*, <b>Tao Lin*</b>, Fei Mi, Martin Jaggi, Hinrich Schütze.<br>
-            EMNLP 2020
-            • <a href="https://arxiv.org/abs/2004.12406">long paper</a> 
-            • <a href="https://github.com/ptlmasking/maskbert">code</a> 
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@inproceedings{zhao2020masking,
-  title     = {Masking as an Efficient Alternative to Finetuning for Pretrained Language Models},
-  author    = {Zhao, Mengjie and Lin, Tao and Jaggi, Martin and Sch{\"u}tze, Hinrich},
-  booktitle = {Empirical Methods in Natural Language Processing},
-  year      = {2020}
-}</code>
-          </li>
-
-          <li>
-            <b>Extrapolation for Large-batch Training in Deep Learning.</b><br>
-            <b>Tao Lin*</b>, Lingjing Kong*, Sebastian U. Stich, Martin Jaggi.<br>
-            ICML 2020
-            • <a href="https://arxiv.org/abs/2006.05720">paper</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@inproceedings{lin2020extrapolation,
-  title         = {Extrapolation for Large-batch Training in Deep Learning},
-  author        = {Lin, Tao and Kong, Lingjing and Stich, Sebastian and Jaggi, Martin},
-  booktitle     = {International Conference on Machine Learning},
-  pages         = {6094--6104},
-  year          = {2020},
-  organization  = {PMLR}
-}</code>
-          </li>
-
-          <li>
-            <b>Dynamic Model Pruning with Feedback.</b><br>
-            <b>Tao Lin</b>, Sebastian U. Stich, Luis Barba, Daniil Dmitriev, Martin Jaggi.<br>
-            ICLR 2020
-            • <a href="https://openreview.net/forum?id=SJem8lSFwB">paper</a>
-            • <a href="https://drive.google.com/file/d/1QpFVEpYcj4tAZ1r1o5Htoc3fWEINBApj/view?usp=sharing">code</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@inproceedings{lin2020dynamic,
-  title     = {Dynamic Model Pruning with Feedback},
-  author    = {Tao Lin and Sebastian U. Stich and Luis Barba and Daniil Dmitriev and Martin Jaggi},
-  booktitle = {International Conference on Learning Representations},
-  year      = {2020},
-  url       = {https://openreview.net/forum?id=SJem8lSFwB}
-}</code>      
-          </li>
-
-          <li>
-            <b>Decentralized Deep Learning with Arbitrary Communication Compression.</b><br>
-            Anastasia Koloskova*, <b>Tao Lin*</b>, Sebastian U. Stich, Martin Jaggi.<br>
-            ICLR 2020
-            • <a href="https://openreview.net/forum?id=SkgGCkrKvH">paper</a>
-            • <a href="https://github.com/epfml/ChocoSGD">code</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@inproceedings{koloskova2020decentralized,
-  title     = {Decentralized Deep Learning with Arbitrary Communication Compression},
-  author    = {Anastasia Koloskova and Tao Lin and Sebastian U Stich and Martin Jaggi},
-  booktitle = {International Conference on Learning Representations},
-  year      = {2020},
-  url       = {https://openreview.net/forum?id=SkgGCkrKvH}
-}</code> 
-          </li>
-
-          <li>
-            <b>Don't Use Large Mini-Batches, Use Local SGD.</b><br>
-            <b>Tao Lin</b>, Sebastian U. Stich, Kumar Kshitij Patel, Martin Jaggi.<br>
-            ICLR 2020
-            • <a href="https://openreview.net/forum?id=B1eyO1BFPr">paper</a>
-            • <a href="https://github.com/epfml/LocalSGD-Code">code</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@inproceedings{lin2020dont,
-  title     = {Don't Use Large Mini-batches, Use Local SGD},
-  author    = {Tao Lin and Sebastian U. Stich and Kumar Kshitij Patel and Martin Jaggi},
-  booktitle = {International Conference on Learning Representations},
-  year      = {2020},
-  url       = {https://openreview.net/forum?id=B1eyO1BFPr}
-}</code>            
-          </li>
-
-          <li>
-            <b>Exploring Interpretable LSTM Neural Networks over Multi-Variable Data.</b><br>
-            Tian Guo, <b>Tao Lin</b>, Nino Antulov-Fantulin.<br>
-            ICML 2019,
-            abridged in <a href="https://openreview.net/forum?id=S1nzIYJvz">ICLR 2018 (workshop track)</a>
-            • <a href="https://arxiv.org/abs/1905.12034">paper</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@inproceedings{guo2019exploring,
-  title         = {Exploring interpretable LSTM neural networks over multi-variable data},
-  author        = {Guo, Tian and Lin, Tao and Antulov-Fantulin, Nino},
-  booktitle     = {International Conference on Machine Learning},
-  pages         = {2494--2504},
-  year          = {2019},
-  organization  = {PMLR}
-}</code>   
-          </li>
-
-          <li>
-            <b>Training DNNs with Hybrid Block Floating Point.</b><br>
-            Mario Drumond, <b>Tao Lin</b>, Martin Jaggi, Babak Falsafi.<br>
-            NeurIPS 2018
-            • <a href="https://arxiv.org/abs/1804.01526">paper</a>
-            • <a href="https://github.com/parsa-epfl/HBFPEmulator">code</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@inproceedings{drumond2018training,
-  title     = {Training DNNs with hybrid block floating point},
-  author    = {Drumond, Mario and Lin, Tao and Jaggi, Martin and Falsafi, Babak},
-  booktitle = {Advances in Neural Information Processing Systems},
-  year      = {2018}
-}</code>
-          </li>
-
-          <li>
-            <b>Hybrid Neural Networks for Learning the Trend in Time Series.</b><br>
-            <b>Tao Lin*</b>, Tian Guo*, Karl Aberer.<br>
-            IJCAI 2017
-            • <a href="https://infoscience.epfl.ch/record/262447?ln=en">paper</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@inproceedings{lin2017hybrid,
-  title     = {Hybrid neural networks for learning the trend in time series},
-  author    = {Lin, Tao and Guo, Tian and Aberer, Karl},
-  booktitle = {Proceedings of the twenty-sixth international joint conference on artificial intelligence},
-  number    = {CONF},
-  pages     = {2273--2279},
-  year      = {2017}
-}</code>
-          </li>
-
-          <li>
-            <b>Heterogeneous Recommendations: What You Might Like To Read After Watching Interstellar.</b><br>
-            Rachid Guerraoui, Anne-Marie Kermarrec, <b>Tao Lin</b>, Rhicheek Patra. (alphabetical order)<br>
-            VLDB 2017
-            • <a href="upload/doc/publication/2017/xmap/Paper_857.pdf">paper</a>
-            • <a href="upload/doc/publication/2017/xmap/Technical_Report.pdf">technical report</a>
-            • <a href="upload/doc/publication/2017/xmap/VLDB17_slides.pdf">slide</a>
-            • <a href="https://github.com/LPD-EPFL-ML/X-MAP">code</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@article{guerraoui2017heterogeneous,
-  title     = {Heterogeneous recommendations: what you might like to read after watching interstellar},
-  author    = {Guerraoui, Rachid and Kermarrec, Anne-Marie and Lin, Tao and Patra, Rhicheek},
-  journal   = {Proceedings of the VLDB Endowment},
-  volume    = {10},
-  number    = {10},
-  pages     = {1070--1081},
-  year      = {2017},
-  publisher = {VLDB Endowment}
-}</code>
-          </li>
-        </ol>
-
-      <h4><a name="journal"></a>Journal articles</h4>
-        <ol reversed>
-          <li>
-            <b>Security-Aware Microservice Orchestration under Uncertainty of Geo-distributed Clouds.</b><br>
-            Zhenyu Wen, <b>Tao Lin</b>, Renyu Yang, Shouling Ji, Rajiv Ranjan, Alexander Romanovsky, Changting Lin and Jie Xu.<br>
-            IEEE Transactions on Parallel and Distributed Systems, 2019
-            • <a href="https://ieeexplore.ieee.org/abstract/document/8766876">paper</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@article{wen2019ga,
-  title     = {Ga-par: Dependable microservice orchestration framework for geo-distributed clouds},
-  author    = {Wen, Zhenyu and Lin, Tao and Yang, Renyu and Ji, Shouling and Ranjan, Rajiv and Romanovsky, Alexander and Lin, Changting and Xu, Jie},
-  journal   = {IEEE Transactions on Parallel and Distributed Systems},
-  volume    = {31},
-  number    = {1},
-  pages     = {129--143},
-  year      = {2019},
-  publisher = {IEEE}
-}</code>
-          </li>
-
-          <li>
-              <b>An Integrated Systems Genetics and Omics Toolkit to Probe Gene Function.</b><br>
-              Hao Li*, Xu Wang*, Daria Rukina, Qingyao Huang, <b>Tao Lin</b>, Vincenzo Sorrentino,
-                  Hongbo Zhang, Maroun Bou Sleiman, Danny Arends, Aaron McDaid, Peiling Luan, Naveed Ziari,
-                  Laura A. Velázquez-Villegas, Karim Gariani, Zoltan Kutalik, Kristina Schoonjans,
-                  Richard A. Radcliffe, Pjotr Prins, Stephan Morgenthaler, Robert W. Williams, Johan Auwerx.<br>
-              Cell Systems, 2018
-              • <a href="http://www.cell.com/cell-systems/fulltext/S2405-4712(17)30486-6">paper</a>
-              • <a href="http://www.systems-genetics.org/">website</a> 
-              • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-              <code class="bibtex">@article{li2018integrated,
-  title     = {An integrated systems genetics and omics toolkit to probe gene function},
-  author    = {Li, Hao and Wang, Xu and Rukina, Daria and Huang, Qingyao and Lin, Tao and Sorrentino, Vincenzo and Zhang, Hongbo and Sleiman, Maroun Bou and Arends, Danny and McDaid, Aaron and others},
-  journal   = {Cell systems},
-  volume    = {6},
-  number    = {1},
-  pages     = {90--102},
-  year      = {2018},
-  publisher = {Elsevier}
-}</code>
-          </li>
-
-          <li>
-              <b>Fog Orchestration for IoT Services: Issues, Challenges and Directions.</b><br>
-              Zhenyu Wen, Renyu Yang, Peter Garraghan, <b>Tao Lin</b>, Jie Xu, Michael Rovatsos.<br>
-              IEEE Internet Computing, 2017
-              • <a href="http://ieeexplore.ieee.org/document/7867735/">paper</a>
-              • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-              <code class="bibtex">@article{wen2017fog,
-  title     = {Fog orchestration for IoT services: issues, challenges and directions},
-  author    = {Wen, Zhenyu and Yang, Renyu and Garraghan, Peter and Lin, Tao and Xu, Jie and Rovatsos, Michael},
-  journal   = {IEEE Internet Computing},
-  volume    = {21},
-  number    = {2},
-  pages     = {16--24},
-  year      = {2017}
-}</code>
-          </li>
-
-          <li>
-              <b>The Movement Tracker: A Flexible System for Automated Movement Analysis in Invertebrate Model Organisms.</b><br>
-              Laurent Mouchiroud, Vincenzo Sorrentino, Evan G. Williams, Matteo Cornaglia, Michael V. Frochaux,
-                  <b>Tao Lin</b>, Amandine A. Nicolet-dit-Félix, Gopal Krishnamani, Tarik Ouhmad,
-                  Martin A.M. Gijs, Bart Deplancke, Johan Auwerx.<br>
-              Current Protocols in Neuroscience, 2016
-              • <a href="https://www.ncbi.nlm.nih.gov/pubmed/27696358">paper</a>
-              • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-              <code class="bibtex">@article{mouchiroud2016movement,
-  title     = {The movement tracker: a flexible system for automated movement analysis in invertebrate model organisms},
-  author    = {Mouchiroud, Laurent and Sorrentino, Vincenzo and Williams, Evan G and Cornaglia, Matteo and Frochaux, Michael V and Lin, Tao and Nicolet-dit-F{\'e}lix, Amandine A and Krishnamani, Gopal and Ouhmad, Tarik and Gijs, Martin AM and others},
-  journal   = {Current protocols in neuroscience},
-  volume    = {77},
-  number    = {1},
-  pages     = {8--37},
-  year      = {2016},
-  publisher = {Wiley Online Library}
-}</code>
-          </li>
-        </ol>
-
-      <h4><a name="workshop"></a>Workshop papers (peer-reviewed) & other preprints</h4>
-        <ol reversed>
-          <!-- <li>
-            <b>Communication-Efficient Gradient Tracking for Decentralized Deep Learning.</b><br>              
-            Yue Liu, <b>Tao Lin</b>, Anastasia Koloskova, Sebastian Stich.<br>
-          </li> -->
-
-          <!-- <li>
-            <b>Optimal Unbiased Sampling for Non-convex Federated Learning via Objective Inconsistency Analysis.</b><br>              
-            Lin Wang, Yongxin Guo, <b>Tao Lin</b>, Xiaoying Tang.<br>
-          </li> -->
-
-          <li>
-            <b>Representation Memorization for Fast Learning New Knowledge without Forgetting.</b><br>              
-            Fei Mi, <b>Tao Lin</b>, Boi Faltings.<br>
-            • <a href="https://arxiv.org/abs/2108.12596">paper</a>
-          </li>
-
-          <li>
-            <b>Slimmable Training for Heterogeneous Federated Learning Systems.</b><br>              
-            Lingjing Kong, <b>Tao Lin</b><sup>†</sup>, Sebastian U. Stich, Martin Jaggi.<br>
-          </li>
-
-          <li>
-            <b>Understanding Memorization from the Perspective of Optimization via Efficient Influence Estimation.</b><br>              
-            Futong Liu, <b>Tao Lin</b><sup>†</sup>, Martin Jaggi.<br>
-            NeurIPS 2021 (<a href="https://opt-ml.org/">OPT workshop track</a>)
-            • <a href="https://arxiv.org/abs/2112.08798">paper</a> (oral)
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@article{liu2020understanding,
-  title     = {Understanding Memorization from the Perspective of Optimization via Efficient Influence Estimation},
-  author    = {Liu, Futong and Lin, Tao and Martin Jaggi},
-  booktitle = {Optimization and machine learning (OPT) workshop, in NeurIPS 2021},
-  year      = {2021}
-}</code>
-          </li>
-
-          <li>
-            <b>Towards Federated Learning on Time-Evolving Heterogeneous Data.</b><br>              
-            Yongxin Guo*, <b>Tao Lin*</b>, Xiaoying Tang.<br>
-            ICML 2021 (<a href="http://federated-learning.org/fl-icml-2021/">FL-ICML workshop track</a>)
-            • <a href="https://arxiv.org/abs/2112.13246">paper</a>
-          </li>
-
-          <li>
-            <b>Generalized Class Incremental Learning.</b><br>              
-            Fei Mi*, Lingjing Kong*, <b>Tao Lin</b>, Kaicheng Yu, Boi Faltings.<br>
-            CVPR 2020 (workshop track)
-            • <a href="http://openaccess.thecvf.com/content_CVPRW_2020/html/w15/Mi_Generalized_Class_Incremental_Learning_CVPRW_2020_paper.html">paper</a>
-            • <a href="#" onclick="showBibTex(this); return false">bibtex</a>
-            <code class="bibtex">@inproceedings{mi2020generalized,
-  title     = {Generalized Class Incremental Learning},
-  author    = {Mi, Fei and Kong, Lingjing and Lin, Tao and Yu, Kaicheng and Faltings, Boi},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
-  pages     = {240--241},
-  year      = {2020}
-}</code>
-          </li>
-        </ol>
-
-
+            
       <div class="ivy"></div>
     </main>
+
+    <script>
+      function openPublicatiosn(evt, typeName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(typeName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+  
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+    </script>
+
   </body>
 </html>
