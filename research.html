@@ -1,170 +1,169 @@
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Tao Lin's personal page</title>
 
-    <meta name="author" content="Tao Lin" />
+<head>
+  <meta charset="utf-8">
+  <title>Tao Lin's personal page</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.css"
-    />
+  <meta name="author" content="Tao Lin" />
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="syntax.css" async>
-    <link rel="icon" type="image/png" href="avatar.jpg">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.css" />
 
-    <script src="script.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="syntax.css" async>
+  <link rel="icon" type="image/png" href="avatar.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- OpenGraph metadata -->
-    <meta property="og:site_name" content="Tao Lin" />
-    <meta property="og:description" content="researcher.">
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Tao Lin" />
-    <meta property="og:url" content="/" />
+  <script src="script.js"></script>
 
-    <style>      
-      /* Style the tab */
-      .tab {
-        overflow: hidden;
-        border: 1px solid #ccc;
-        background-color: #f1f1f1;
+  <!-- OpenGraph metadata -->
+  <meta property="og:site_name" content="Tao Lin" />
+  <meta property="og:description" content="researcher.">
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tao Lin" />
+  <meta property="og:url" content="/" />
+
+  <style>
+    /* Style the tab */
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+
+    /* Style the buttons inside the tab */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+      font-size: 17px;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+  </style>
+
+</head>
+
+<script>
+  function includeHTML() {
+    var z, i, elmnt, file, xhttp;
+    /*loop through a collection of all HTML elements:*/
+    z = document.getElementsByTagName("*");
+    for (i = 0; i < z.length; i++) {
+      elmnt = z[i];
+      /*search for elements with a certain atrribute:*/
+      file = elmnt.getAttribute("w3-include-html");
+      if (file) {
+        /*make an HTTP request using the attribute value as the file name:*/
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4) {
+            if (this.status == 200) { elmnt.innerHTML = this.responseText; }
+            if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
+            /*remove the attribute, and call this function once more:*/
+            elmnt.removeAttribute("w3-include-html");
+            includeHTML();
+          }
+        }
+        xhttp.open("GET", file, true);
+        xhttp.send();
+        /*exit the function:*/
+        return;
       }
-      
-      /* Style the buttons inside the tab */
-      .tab button {
-        background-color: inherit;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        transition: 0.3s;
-        font-size: 17px;
-      }
-      
-      /* Change background color of buttons on hover */
-      .tab button:hover {
-        background-color: #ddd;
-      }
-      
-      /* Create an active/current tablink class */
-      .tab button.active {
-        background-color: #ccc;
-      }
-      
-      /* Style the tab content */
-      .tabcontent {
-        display: none;
-        padding: 6px 12px;
-        border: 1px solid #ccc;
-        border-top: none;
-      }
-      </style>
-  
-  </head>
+    }
+  };
+</script>
+
+<body>
+  <main>
+    <header>
+      <h1 class="site-title">
+        <a class="fn url uid" href="https://tlin-taolin.github.io/" rel="me">
+          <span class="given-name">Tao</span>
+          <span class="family-name">LIN</span>
+        </a>
+      </h1>
+    </header>
+
+    <!-- general head -->
+    <p>
+      <span class="note">Tenure-track Assistant Professor, PI of <a href="https://lins-lab.github.io/">LINs Lab</a> at
+        <a href="https://en.westlake.edu.cn/">Westlake University</a>.</span><br>
+    </p>
+
+    <nav>
+      <ul>
+        <a href="cv.html">cv</a>
+        <!-- • <a href="group.html">group</a> -->
+        • <a href="research.html">research</a>
+        <!-- • <a href="https://scholar.google.com/citations?user=QE9pa_cAAAAJ&hl=en">google scholar</a> -->
+        • <a href="#" onclick="showBibTex(this); return false">contact</a><code class="bibtex">
+                                            tao.lin [at] epfl.ch, itamtao [at] gmail.com</code>
+      </ul>
+    </nav>
+
+    <!-- publication related -->
+    <hr>
+    <p>
+      Most recent publications on <a href="https://scholar.google.com/citations?user=QE9pa_cAAAAJ&hl=en">Google
+        Scholar</a>.<br>
+      * indicates equal contribution; <sup>†</sup> indicates corresponding authorship.
+    </p>
+
+    <div class="tab">
+      <button class="tablinks" onclick="openPublicatiosn(event, 'selected')" id="defaultOpen">Selected</button>
+      <button class="tablinks" onclick="openPublicatiosn(event, 'all')">All</button>
+    </div>
+    <div w3-include-html="publications_selected.html" id="selected" class="tabcontent">
+      <script>includeHTML();</script>
+    </div>
+    <div w3-include-html="publications_all.html" id="all" class="tabcontent">
+      <script>includeHTML();</script>
+    </div>
+
+
+    <div class="ivy"></div>
+  </main>
 
   <script>
-    function includeHTML() {
-      var z, i, elmnt, file, xhttp;
-      /*loop through a collection of all HTML elements:*/
-      z = document.getElementsByTagName("*");
-      for (i = 0; i < z.length; i++) {
-        elmnt = z[i];
-        /*search for elements with a certain atrribute:*/
-        file = elmnt.getAttribute("w3-include-html");
-        if (file) {
-          /*make an HTTP request using the attribute value as the file name:*/
-          xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4) {
-              if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-              if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-              /*remove the attribute, and call this function once more:*/
-              elmnt.removeAttribute("w3-include-html");
-              includeHTML();
-            }
-          }      
-          xhttp.open("GET", file, true);
-          xhttp.send();
-          /*exit the function:*/
-          return;
-        }
+    function openPublicatiosn(evt, typeName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
       }
-    };
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(typeName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
   </script>
 
-  <body>
-    <main>  
-      <header>
-        <h1 class="site-title">
-          <a class="fn url uid" href="https://tlin-taolin.github.io/" rel="me">
-            <span class="given-name">Tao</span>
-            <span class="family-name">LIN</span>
-          </a>
-        </h1>
-      </header>
+</body>
 
-      <!-- general head -->
-      <p>
-        <span class="note">Tenure-track Assistant Professor, PI of <a href="https://lins-lab.github.io/">LINs Lab</a> at <a
-            href="https://en.westlake.edu.cn/">Westlake University</a>.</span><br>
-      </p>
-
-      <nav>
-        <ul>
-          <a href="cv.html">cv</a>
-          <!-- • <a href="group.html">group</a> -->
-          • <a href="research.html">research</a>
-          <!-- • <a href="https://scholar.google.com/citations?user=QE9pa_cAAAAJ&hl=en">google scholar</a> -->
-          • <a href="#" onclick="showBibTex(this); return false">contact</a><code class="bibtex">
-                                            tao.lin [at] epfl.ch, itamtao [at] gmail.com</code>
-        </ul>
-      </nav>
-
-      <!-- publication related -->
-      <hr>
-      <p>
-        Most recent publications on <a href="https://scholar.google.com/citations?user=QE9pa_cAAAAJ&hl=en">Google Scholar</a>.<br>
-        * indicates equal contribution; <sup>†</sup> indicates corresponding authorship.
-      </p>
-
-      <div class="tab">
-        <button class="tablinks" onclick="openPublicatiosn(event, 'selected')" id="defaultOpen">Selected</button>
-        <button class="tablinks" onclick="openPublicatiosn(event, 'all')">All</button>
-      </div>
-      <div w3-include-html="publications_selected.html" id="selected" class="tabcontent">
-        <script>includeHTML();</script>
-      </div>  
-      <div w3-include-html="publications_all.html" id="all" class="tabcontent">
-        <script>includeHTML();</script>
-      </div>     
-
-            
-      <div class="ivy"></div>
-    </main>
-
-    <script>
-      function openPublicatiosn(evt, typeName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(typeName).style.display = "block";
-        evt.currentTarget.className += " active";
-      }
-  
-      // Get the element with id="defaultOpen" and click on it
-      document.getElementById("defaultOpen").click();
-    </script>
-
-  </body>
 </html>
